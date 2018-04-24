@@ -1,0 +1,11 @@
+{
+  "name": "kelly_sample_coding_test",
+  "version": "1.0.0",
+  "description": "coding test",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js opn http://localhost:8080"
+  },
+  "author": "Kelly Sample",
+  "license": "ISC"
+}
