@@ -1,8 +1,9 @@
-var file = require('../index.js');
-var adjustPageCounter = file.adjustPageCounter;
-var removeComma = file.removeComma;
-var formatPhotos = file.formatPhotos;
-var assert = require("assert");
+let file = require('../index.js');
+let adjustPageCounter = file.adjustPageCounter;
+let removeComma = file.removeComma;
+let formatPhotos = file.formatPhotos;
+let assert = require("assert");
+var searchValue = "123"
 
 describe("removeComma", function(){
   it("should remove commas in strings", function(){

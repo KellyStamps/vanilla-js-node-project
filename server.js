@@ -5,7 +5,7 @@ const fs = require('fs');
 let html;
 let css;
 let js;
-let key;
+let hidden;
 
 //use these to assign the global variables above
 fs.readFile('./index.html', function (err, data) {
@@ -29,11 +29,11 @@ fs.readFile('./index.js', function (err, data) {
   js = data;
 });
 
-fs.readFile('./key.js', function (err, data) {
+fs.readFile('./hidden.js', function (err, data) {
   if (err) {
     throw err;
   }
-  key = data;
+  hidden = data;
 });
 
 
@@ -53,9 +53,9 @@ http.createServer((req, res) => {
    res.end();
    return;
   }
-  if(req.url.indexOf('key.js') != -1){
+  if(req.url.indexOf('hidden.js') != -1){
    res.writeHead(200, {'Content-Type': 'text/javascript'});
-   res.write(key);
+   res.write(hidden);
    res.end();
    return;
   }

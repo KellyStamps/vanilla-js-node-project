@@ -25,6 +25,10 @@ body {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 .photos {
   padding: 20px;
   margin-bottom: 20px;
@@ -53,9 +57,13 @@ body {
     width: 75%;
   }
 
-  #pagination a {
+  .show {
     display: block;
   }
+
+  /* #pagination a {
+    display: block;
+  } */
 }
 
 @media screen and (min-width: 801px){
@@ -100,6 +108,10 @@ body {
   #pagination {
     margin: 30px auto;
     grid-column: 2/3;
+  }
+
+  .show {
+    display: inline;
   }
 
 }

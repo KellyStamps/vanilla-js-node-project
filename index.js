@@ -2,20 +2,50 @@
 let pageCounter = 1;
 let searchValue;
 
-//receives the input submit event, sets global searchValue to search term, then calls fetchImgs
+//receives the input submit event, sets global searchValue to search term, resets pageCounter to 1, then calls fetchImgs
 function getPhotos(event){
-  searchValue = event.target.value
+  searchValue = event.target.value;
+  pageCounter = 1;
+  showPagination()
   fetchImgs()
+}
+
+//helper function to hide and show pagination buttons
+function showPagination(){
+  let prev = document.getElementById("prev")
+  let next = document.getElementById("next")
+  if(pageCounter === 1) {
+    next.classList.remove("hidden");
+    next.classList.add("show");
+    prev.classList.remove("show");
+    prev.classList.add("hidden");
+  } else if (pageCounter > 1) {
+    next.classList.remove("hidden");
+    next.classList.add("show");
+    prev.classList.remove("hidden");
+    prev.classList.add("show");
+  }
 }
 
 //fetches 10 images at a time, using variables from hidden.js
 function fetchImgs(){
-  if (searchValue.length > 0) {
+  if (validInput()) {
     fetch(`${hidden.BASE_URL}${hidden.key}&tags=${searchValue}${hidden.FORMAT_URL}${pageCounter}`)
     .then(res => res.json())
     .then(json => {
       renderPhotos(json.photos.photo)
     })
+  } else {
+    alert("Please enter a valid search term")
+  }
+}
+
+//helper function to determine if input is blank
+function validInput(){
+  if(searchValue.length > 0){
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -39,6 +69,7 @@ function removeComma(list){
 //first adjusts pageCounter, then calls fetchImgs to get the next 10 results and re render
 function nextTenResults(value){
   adjustPageCounter(value)
+  showPagination()
   fetchImgs()
 }
 
@@ -76,3 +107,4 @@ function goToTop(){
 exports.adjustPageCounter = adjustPageCounter
 exports.removeComma = removeComma
 exports.formatPhotos = formatPhotos
+exports.validInput = validInput
