@@ -4,8 +4,16 @@
   "description": "coding test",
   "main": "index.html",
   "scripts": {
-    "start": "node server.js opn http://localhost:8080"
+    "start": "open http://localhost:8080 && node server.js",
+    "test": "./node_modules/.bin/mocha --recursive"
   },
   "author": "Kelly Sample",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1"
+  }
 }

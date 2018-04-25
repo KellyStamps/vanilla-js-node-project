@@ -3,6 +3,7 @@
 const BASE_URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="
 const FORMAT_URL = "&format=json&nojsoncallback=1&per_page=10&page="
 
+
 //global variables that keeps track of the page number and search value
 let pageCounter = 1;
 let searchValue;
@@ -57,3 +58,12 @@ function openImgModal(event){
 function closeImgModal(){
   document.getElementById("modal").style.display = "none";
 }
+
+function goToTop(){
+  document.documentElement.scrollTop = 0;
+}
+
+// if (typeof module !== 'undefined' && module.exports !== null) {
+//   exports.renderPhotos = renderPhotos;
+//   exports.closeImgModal = closeImgModal;
+// }
