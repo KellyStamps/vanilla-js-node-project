@@ -5,6 +5,7 @@ const fs = require('fs');
 let html;
 let css;
 let js;
+let key;
 
 //use these to assign the global variables above
 fs.readFile('./index.html', function (err, data) {
@@ -28,6 +29,13 @@ fs.readFile('./index.js', function (err, data) {
   js = data;
 });
 
+fs.readFile('./key.js', function (err, data) {
+  if (err) {
+    throw err;
+  }
+  key = data;
+});
+
 
 //create the server - look to see if the request url contains either CSS or Javascript, and return the appropriate information
 http.createServer((req, res) => {
@@ -39,9 +47,15 @@ http.createServer((req, res) => {
    res.end();
    return;
   }
-  if(req.url.indexOf('.js') != -1){
+  if(req.url.indexOf('index.js') != -1){
    res.writeHead(200, {'Content-Type': 'text/javascript'});
    res.write(js);
+   res.end();
+   return;
+  }
+  if(req.url.indexOf('key.js') != -1){
+   res.writeHead(200, {'Content-Type': 'text/javascript'});
+   res.write(key);
    res.end();
    return;
   }
